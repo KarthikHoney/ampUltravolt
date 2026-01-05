@@ -61,19 +61,17 @@ export default function Header() {
                   )}
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent group-hover:w-full transition-all duration-300"></span>
                 </button>
-                {"submenu" in item && (
+                {Array.isArray(item.submenu) && (
                   <div className="absolute left-0 mt-0 w-48 bg-card border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                     {item.submenu.map((sub) => (
-                      <Link
-                        key={sub}
-                        href="#"
-                        className="block px-4 py-2 text-sm text-foreground hover:text-primary hover:bg-secondary/50 transition-colors duration-200 first:rounded-t-lg last:rounded-b-lg"
-                      >
+                      <Link key={sub} href="#" className="block px-4 py-2 text-sm">
                         {sub}
                       </Link>
                     ))}
                   </div>
                 )}
+
+
               </div>
             ))}
           </nav>
@@ -136,14 +134,10 @@ export default function Header() {
                     />
                   )}
                 </button>
-                {"submenu" in item && openDropdown === item.label && (
-                  <div className="pl-4 space-y-1 mt-1">
+                {Array.isArray(item.submenu) && openDropdown === item.label && (
+                  <div className="absolute left-0 mt-0 w-48 bg-card border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                     {item.submenu.map((sub) => (
-                      <Link
-                        key={sub}
-                        href="#"
-                        className="block px-3 py-2 text-xs text-muted-foreground hover:text-primary hover:bg-secondary/30 rounded transition-colors duration-200"
-                      >
+                      <Link key={sub} href="#" className="block px-4 py-2 text-sm">
                         {sub}
                       </Link>
                     ))}
