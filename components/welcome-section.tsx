@@ -1,22 +1,12 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react"
-import Image from "next/image"
-import leftimg from "../assets/68312.jpg"
-import Aos from "aos"
-import "aos/dist/aos.css"
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import leftimg from "../assets/68312.jpg";
 
 export default function WelcomeSection() {
   const sectionRef = useRef<HTMLDivElement>(null)
   const [isVisible, setIsVisible] = useState(false)
-
-  useEffect(()=>{
-    Aos.init({
-      duration: 1000,
-      easing: 'ease-in-out',
-      once: true,
-    })
-  },[])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -49,7 +39,7 @@ export default function WelcomeSection() {
             isVisible ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-10"
           }`}
         >
-          <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-lg data-aos='fade-right' data-aos-duration='1000' data-aos-delay='500'">
+          <div className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-lg">
             <Image
               src={leftimg}
               alt="Renewable Energy"
