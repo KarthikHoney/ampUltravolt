@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react"
 import Preloader from "@/components/preloader"
-import CustomCursor from "@/components/custom-cursor"
 import Header from "@/components/header"
 import Hero from "@/components/hero"
 import Services from "@/components/services"
@@ -23,7 +22,6 @@ export default function Home() {
   return (
     <>
       {isLoading && <Preloader />}
-      <CustomCursor />
       <Header />
       <main className="min-h-screen bg-background">
         <Hero />

@@ -16,7 +16,7 @@ export default function Header() {
   }
 
   return (
-    <header className="w-full bg-background border-b border-border overflow-x-hidden">
+    <header className="relative z-50 w-full bg-background border-b border-border">
       {/* Top Info Banner */}
       <div className=" hidden md:block bg-gradient-to-r from-accent via-accent to-orange-600 text-white py-2 px-2 sm:px-4 overflow-x-hidden">
         <div className="max-w-7xl mx-auto">
@@ -62,7 +62,7 @@ export default function Header() {
                   <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-primary to-accent group-hover:w-full transition-all duration-300"></span>
                 </button>
                 {Array.isArray(item.submenu) && (
-                  <div className="absolute left-0 mt-0 w-48 bg-card border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                  <div className="absolute left-0 mt-0 w-48 bg-card border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-10">
                     {item.submenu.map((sub) => (
                       <Link key={sub} href="#" className="block px-4 py-2 text-sm">
                         {sub}
@@ -79,23 +79,6 @@ export default function Header() {
           {/* Social & Mobile Menu */}
           <div className="flex items-center gap-2 sm:gap-3">
             <ThemeToggle />
-            <div className="hidden sm:flex gap-2">
-              <Link
-                href="#"
-                className="p-2 text-accent hover:text-primary hover:bg-secondary/30 rounded-lg transition-all duration-200"
-                aria-label="Facebook"
-              >
-                <Facebook className="w-5 h-5" />
-              </Link>
-              <Link
-                href="#"
-                className="p-2 text-accent hover:text-primary hover:bg-secondary/30 rounded-lg transition-all duration-200"
-                aria-label="Twitter"
-              >
-                <Twitter className="w-5 h-5" />
-              </Link>
-            </div>
-
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -120,9 +103,11 @@ export default function Header() {
               { label: "Gallery", href: "#" },
               { label: "Locate us", href: "#" },
             ].map((item) => (
-              <div key={item.label}>
+              <div key={item.label} className="relative">
                 <button
                   onClick={() => toggleDropdown(item.label)}
+                  aria-expanded={openDropdown === item.label}
+                  aria-controls={`submenu-${item.label}`}
                   className="w-full text-left px-3 py-2 text-sm font-medium text-foreground hover:text-primary hover:bg-secondary/50 rounded transition-all duration-200 flex items-center justify-between"
                 >
                   {item.label}
@@ -134,10 +119,16 @@ export default function Header() {
                     />
                   )}
                 </button>
+
+                {/* Mobile: render submenu inline when open */}
                 {Array.isArray(item.submenu) && openDropdown === item.label && (
-                  <div className="absolute left-0 mt-0 w-48 bg-card border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                  <div id={`submenu-${item.label}`} className="mt-2 pl-4 space-y-1">
                     {item.submenu.map((sub) => (
-                      <Link key={sub} href="#" className="block px-4 py-2 text-sm">
+                      <Link
+                        key={sub}
+                        href="#"
+                        className="block px-3 py-2 text-sm text-foreground rounded hover:bg-secondary/30 transition-colors"
+                      >
                         {sub}
                       </Link>
                     ))}
