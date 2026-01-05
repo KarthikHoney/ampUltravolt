@@ -25,11 +25,11 @@ export default function Header() {
         <div className="max-w-7xl mx-auto flex items-center justify-between gap-3">
           {/* Logo Section */}
           <div className="flex items-center gap-3 flex-shrink-0 w-auto">
-            <Image src={logo} alt="Logo" width={300} height={100} className="w-24 sm:w-32 md:w-48 lg:w-40 xl:w-80 h-auto" />
+            <Image src={logo} alt="Logo" width={300} height={100} className="w-38 sm:w-40 md:w-48 lg:w-40 xl:w-80 h-auto" />
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center">
             {[
               { label: "Company", submenu: ["About Us", "Team", "Certifications"] },
               { label: "Solar Power Plant", submenu: ["Ground Mounted", "Rooftop", "Utility Scale"] },
