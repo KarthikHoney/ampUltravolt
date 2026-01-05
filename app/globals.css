@@ -1,26 +1,476 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
 
 :root {
+  /* AmpUltraVolt Light Theme */
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1a1a1a;
+  --card: #f5f5f5;
+  --card-foreground: #1a1a1a;
+  --popover: #ffffff;
+  --popover-foreground: #1a1a1a;
+  --primary: #ffd700;
+  --primary-foreground: #0c0c0c;
+  --secondary: #e8e8e8;
+  --secondary-foreground: #1a1a1a;
+  --muted: #d4d4d4;
+  --muted-foreground: #666666;
+  --accent: #ff6347;
+  --accent-foreground: #ffffff;
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.985 0 0);
+  --border: #e0e0e0;
+  --input: #f5f5f5;
+  --ring: #ffd700;
+  --chart-1: #ffd700;
+  --chart-2: #00bfff;
+  --chart-3: #ff6347;
+  --chart-4: #1a1a2e;
+  --chart-5: #ffffff;
+  --radius: 0.625rem;
+  --sidebar: #f5f5f5;
+  --sidebar-foreground: #1a1a1a;
+  --sidebar-primary: #ffd700;
+  --sidebar-primary-foreground: #0c0c0c;
+  --sidebar-accent: #ff6347;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #e0e0e0;
+  --sidebar-ring: #ffd700;
+}
+
+.dark {
+  /* Same as root since we're dark mode focused */
+  --background: #0a0a0f;
+  --foreground: #e8e8e8;
+  --card: #1a1a2e;
+  --card-foreground: #e8e8e8;
+  --popover: #1a1a2e;
+  --popover-foreground: #e8e8e8;
+  --primary: #ffd700;
+  --primary-dark: #0c0c0c;
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: #1a1a2e;
+  --secondary-foreground: #e8e8e8;
+  --muted: #2a2a3e;
+  --muted-foreground: #9999aa;
+  --accent: #ff6347;
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: #2a2a3e;
+  --input: #2a2a3e;
+  --ring: #ffd700;
+  --chart-1: #ffd700;
+  --chart-2: #00bfff;
+  --chart-3: #ff6347;
+  --chart-4: #1a1a2e;
+  --chart-5: #e8e8e8;
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(0.269 0 0);
+  --sidebar-ring: oklch(0.439 0 0);
 }
 
 @theme inline {
+  /* optional: --font-sans, --font-serif, --font-mono if they are applied in the layout.tsx */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground overflow-x-hidden;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/* Add glow utilities for header logo */
+.glow-sm {
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.glow-md {
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.6);
+}
+
+/* Custom cursor styles */
+html {
+  cursor: none;
+}
+
+
+/* Responsive marquee text handling */
+.marquee-text {
+  width: 100%;
+  overflow: hidden;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+
+
+@media (max-width: 640px) {
+  .marquee-text {
+    line-height: 1.3;
+  }
+}
+
+@media (min-width: 641px) {
+  .marquee-text {
+    animation: marquee 35s linear infinite;
+    white-space: nowrap;
+  }
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.cursor-follower {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--electric);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px var(--electric);
+  opacity: 0.8;
+}
+
+.cursor-dot {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: var(--primary);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 10000;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 5px var(--primary);
+}
+
+/* Preloader styles */
+@keyframes lightning-strike {
+  0%,
+  10%,
+  15%,
+  100% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  5%,
+  12% {
+    opacity: 1;
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
+  }
+}
+
+.lightning-bolt {
+  animation: lightning-strike 1.5s infinite;
+}
+
+.preloader-circle {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Kinetic typography animations */
+@keyframes letter-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0) translateY(20px);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+.letter-animate {
+  display: inline-block;
+  animation: letter-pop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.shimmer-text {
+  background: linear-gradient(90deg, var(--electric), var(--primary), var(--electric));
+  background-size: 1000px 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s infinite;
+}
+
+/* Card hover effects */
+@keyframes card-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(0, 191, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 191, 255, 0.5), inset 0 0 20px rgba(255, 215, 0, 0.1);
+  }
+}
+
+.service-card {
+  animation: card-glow 3s ease-in-out infinite;
+}
+
+/* Button interactions */
+@keyframes button-charge {
+  0% {
+    box-shadow: 0 0 0 rgba(255, 215, 0, 0.5);
+  }
+  100% {
+    box-shadow: 0 0 30px rgba(255, 215, 0, 0.8);
+  }
+}
+
+.button-primary {
+  background: var(--primary);
+  color: var(--primary-dark);
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.button-primary:hover {
+  transform: translateY(-3px);
+  animation: button-charge 0.5s ease-in-out;
+}
+
+.button-primary:active {
+  transform: translateY(-1px);
+}
+
+/* Scroll animations */
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-on-scroll {
+  animation: fade-in-up 1s ease-out forwards;
+  opacity: 0;
+}
+
+.fade-in-on-scroll.in-view {
+  opacity: 1;
+}
+
+/* Responsive utilities for all screen sizes */
+@media (max-width: 640px) {
+  /* Mobile optimizations */
+  .text-7xl {
+    font-size: 2.25rem !important;
+  }
+  
+  .text-6xl {
+    font-size: 1.875rem !important;
+  }
+  
+  .text-5xl {
+    font-size: 1.5rem !important;
+  }
+  
+  .gap-6 {
+    gap: 0.75rem !important;
+  }
+  
+  .px-8 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  .py-4 {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+  
+  /* Hero section mobile adjustments */
+  .pt-20 {
+    padding-top: 2rem !important;
+  }
+  
+  .w-72 {
+    width: 12rem !important;
+    height: 12rem !important;
+  }
+  
+  .top-20 {
+    top: 2rem !important;
+  }
+  
+  .left-20 {
+    left: 2rem !important;
+  }
+  
+  .bottom-20 {
+    bottom: 2rem !important;
+  }
+  
+  .right-20 {
+    right: 2rem !important;
+  }
+  
+  /* Floating orbs hidden on mobile */
+  .blur-3xl {
+    filter: blur(1.5rem) !important;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  /* Tablet optimizations */
+  .text-7xl {
+    font-size: 3rem !important;
+  }
+  
+  .text-6xl {
+    font-size: 2.25rem !important;
+  }
+  
+  .text-5xl {
+    font-size: 1.875rem !important;
+  }
+  
+  .w-72 {
+    width: 18rem !important;
+    height: 18rem !important;
+  }
+  
+  .top-20 {
+    top: 3rem !important;
+  }
+  
+  .bottom-20 {
+    bottom: 3rem !important;
+  }
+}
+
+@media (min-width: 1025px) {
+  /* Desktop optimizations */
+  .text-8xl {
+    font-size: 6rem !important;
+  }
+  
+  .w-72 {
+    width: 18rem !important;
+    height: 18rem !important;
+  }
+}
+
+/* Ensure content stays within bounds */
+@media (max-width: 768px) {
+  .overflow-hidden {
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+  }
+  
+  .markquee {
+    animation: marquee 25s linear infinite !important;
+  }
+}
+
+/* Ensure buttons are touchable on mobile */
+@media (max-width: 640px) {
+  button, a {
+    min-height: 2.5rem !important;
+    min-width: 2.5rem !important;
+  }
+}
+
+/* Ensure proper spacing on all devices */
+.max-w-7xl {
+  width: 100% !important;
+  padding-left: 0.5rem !important;
+  padding-right: 0.5rem !important;
+}
+
+@media (min-width: 640px) {
+  .max-w-7xl {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .max-w-7xl {
+    padding-left: 2rem !important;
+    padding-right: 2rem !important;
+  }
 }
