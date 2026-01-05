@@ -136,10 +136,24 @@
 }
 
 /* Custom cursor styles */
-html {
+html,
+body {
+  cursor: auto;
+}
+
+html.has-custom-cursor,
+body.has-custom-cursor {
   cursor: none;
 }
 
+/* Ensure interactive controls keep default cursor */
+button,
+a,
+input,
+textarea,
+select {
+  cursor: auto;
+}
 
 /* Responsive marquee text handling */
 

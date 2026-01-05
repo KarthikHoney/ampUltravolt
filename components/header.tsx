@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Link from "next/link"
 import Image from "next/image"
-import logo from "../assets/ampultralogo.png"
+import logo from "../assets/ampultravolttlogo.png"
 import { Facebook, Twitter, Menu, X, ChevronDown } from "lucide-react"
 import { ThemeToggle } from "./theme-toggle"
 
@@ -18,20 +18,7 @@ export default function Header() {
   return (
     <header className="relative z-50 w-full bg-background border-b border-border">
       {/* Top Info Banner */}
-      <div className=" hidden md:block bg-gradient-to-r from-accent via-accent to-orange-600 text-white py-2 px-2 sm:px-4 overflow-x-hidden">
-        <div className="max-w-7xl mx-auto">
-          <p className=" text-xs sm:text-sm md:text-lg font-semibold text-center md:text-left  marquee-text">We undertake EPC Turnkey Projects EHV/HV & MV Works, Solar Power upto 100MW and Operation & Maintenance (AMC) of Solar Power Plant & Factory etx.,</p>
-        </div>
-      </div>
-
-      {/* Projects Bar */}
-      <div className="hidden md:block bg-secondary/50 border-b border-border px-2 sm:px-4 py-2 overflow-x-hidden">
-        <div className="max-w-7xl mx-auto">
-          <p className=" text-xs md:text-lg text-muted-foreground text-center md:text-left marquee-text">
-            Ongoing Projects 1.Development of 105MW solar projects at ACME Clean tech Solutions Pvt Ltd from Various locations in Karnataka. a.Guleddagudda-15 MW b.M.K.Hubli- 15 MW c.Sankeshwar- 15 MW d.Kudligi -20 MW e.Choranuru - 20 MW f.Pallicheru - 20 MW 
-          </p>
-        </div>
-      </div>
+      
 
       {/* Main Header */}
       <div className="px-2 sm:px-4 py-3 md:py-6">

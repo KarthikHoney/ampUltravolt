@@ -6,6 +6,8 @@ import Header from "@/components/header"
 import Hero from "@/components/hero"
 import Services from "@/components/services"
 import CTA from "@/components/cta"
+import WelcomeSection from "@/components/welcome-section"
+import Footer from "@/components/footer"
 
 export default function Home() {
   const [isLoading, setIsLoading] = useState(true)
@@ -25,8 +27,10 @@ export default function Home() {
       <Header />
       <main className="min-h-screen bg-background">
         <Hero />
+        <WelcomeSection />
         <Services />
         <CTA />
+       <Footer/>
       </main>
     </>
   )

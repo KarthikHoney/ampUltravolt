@@ -66,6 +66,7 @@ export default function Services() {
   }, [])
 
   return (
+    <>
     <section className="py-12 sm:py-16 md:py-20 bg-background dark:bg-black px-3 sm:px-4">
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-12 sm:mb-16 md:mb-20">
@@ -92,5 +93,24 @@ export default function Services() {
         </div>
       </div>
     </section>
+    {/* info section  */}
+   <section className="mt-8 bg-card border border-border rounded-lg px-4 py-6">
+     <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-4 items-center text-center">
+       <div className="p-4 transition-transform transform hover:-translate-y-1">
+         <h3 className="text-3xl sm:text-4xl font-extrabold text-foreground">100+</h3>
+         <p className="text-sm text-muted-foreground mt-1">Projects</p>
+       </div>
+       <div className="p-4 transition-transform transform hover:-translate-y-1">
+         <h3 className="text-3xl sm:text-4xl font-extrabold text-foreground">50+</h3>
+         <p className="text-sm text-muted-foreground mt-1">Clients</p>
+       </div>
+       <div className="p-4 transition-transform transform hover:-translate-y-1">
+         <h3 className="text-3xl sm:text-4xl font-extrabold text-foreground">20+</h3>
+         <p className="text-sm text-muted-foreground mt-1">Years Experience</p>
+       </div>
+     </div>
+   </section>
+    </>
   )
+
 }

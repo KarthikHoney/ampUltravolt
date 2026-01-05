@@ -27,6 +27,7 @@ export default function Hero() {
   }, [isVisible])
 
   return (
+    <>
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-slate-50 via-white to-slate-100 dark:from-slate-950 dark:via-slate-900 dark:to-black pt-10 sm:pt-16 md:pt-20 lg:pt-24">
       {/* Animated background grid */}
       <div className="absolute inset-0  dark:opacity-90">
@@ -82,6 +83,23 @@ export default function Hero() {
           </svg>
         </div>
       </div>
+
     </section>
+    {/* Info Banner */}
+    <div className=" hidden md:block bg-gradient-to-r from-accent via-accent to-orange-600 text-white py-2 px-2 sm:px-4 overflow-x-hidden">
+            <div className="max-w-7xl mx-auto">
+              <p className=" text-xs sm:text-sm md:text-lg font-semibold text-center md:text-left  marquee-text">We undertake EPC Turnkey Projects EHV/HV & MV Works, Solar Power upto 100MW and Operation & Maintenance (AMC) of Solar Power Plant & Factory etx.,</p>
+            </div>
+    </div>
+    
+    {/* Projects Bar */}
+    <div className="hidden md:block bg-secondary/50 border-b border-border px-2 sm:px-4 py-2 overflow-x-hidden">
+      <div className="max-w-7xl mx-auto">
+        <p className=" text-xs md:text-lg text-muted-foreground text-center md:text-left marquee-text">
+          Ongoing Projects 1.Development of 105MW solar projects at ACME Clean tech Solutions Pvt Ltd from Various locations in Karnataka. a.Guleddagudda-15 MW b.M.K.Hubli- 15 MW c.Sankeshwar- 15 MW d.Kudligi -20 MW e.Choranuru - 20 MW f.Pallicheru - 20 MW 
+        </p>
+      </div>
+    </div>
+          </>
   )
 }
