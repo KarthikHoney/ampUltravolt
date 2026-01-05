@@ -22,7 +22,7 @@ export default function Hero() {
       } else {
         clearInterval(interval)
       }
-    }, 80)
+    }, 600)
 
     return () => clearInterval(interval)
   }, [isVisible])
